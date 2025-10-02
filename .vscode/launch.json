@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "console": "externalTerminal",
+      "cwd": "e:/Drive Forker/Drive Forker/drive-forker",
+      "program": "e:/Drive Forker/Drive Forker/drive-forker/build/Debug/outDebug"
+    }
+  ]
+}

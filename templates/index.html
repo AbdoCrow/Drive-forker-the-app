@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drive Forker - Professional Google Drive Management</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        background: #f8f9fa;
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .container {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        max-width: 600px;
+        margin: 50px auto;
+        border: 1px solid #e9ecef;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 40px;
+        border-bottom: 1px solid #e9ecef;
+        padding-bottom: 30px;
+      }
+
+      .header h1 {
+        color: #1a1a1a;
+        font-size: 2.4em;
+        margin-bottom: 12px;
+        font-weight: 600;
+        letter-spacing: -0.5px;
+      }
+
+      .header p {
+        color: #6c757d;
+        font-size: 1.1em;
+        line-height: 1.5;
+      }
+
+      .login-section {
+        text-align: center;
+        margin: 40px 0;
+      }
+
+      .login-btn {
+        background: #4285f4;
+        color: white;
+        border: none;
+        padding: 14px 32px;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.2s ease;
+        letter-spacing: 0.5px;
+      }
+
+      .login-btn:hover {
+        background: #3367d6;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(66, 133, 244, 0.3);
+      }
+
+      .user-info {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 6px;
+        margin-bottom: 30px;
+        text-align: center;
+        border: 1px solid #e9ecef;
+      }
+
+      .user-info p {
+        color: #28a745;
+        font-weight: 500;
+        margin-bottom: 8px;
+      }
+
+      .logout-link {
+        color: #dc3545;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s ease;
+      }
+
+      .logout-link:hover {
+        color: #c82333;
+        text-decoration: underline;
+      }
+
+      .form-section {
+        margin-top: 30px;
+      }
+
+      .form-section h3 {
+        color: #495057;
+        font-weight: 600;
+        margin-bottom: 25px;
+        text-align: center;
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #495057;
+        font-weight: 600;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 14px 16px;
+        border: 2px solid #dee2e6;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: all 0.2s ease;
+        background: #fff;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: #4285f4;
+        box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.1);
+      }
+
+      .form-group input::placeholder {
+        color: #adb5bd;
+        font-style: italic;
+      }
+
+      .submit-btn {
+        width: 100%;
+        background: #28a745;
+        color: white;
+        border: none;
+        padding: 16px;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .submit-btn:hover {
+        background: #218838;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+      }
+
+      .help-text {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 6px;
+        margin-top: 30px;
+        font-size: 14px;
+        color: #495057;
+        border-left: 4px solid #4285f4;
+        line-height: 1.6;
+      }
+
+      .help-text strong {
+        display: block;
+        margin-bottom: 12px;
+        color: #343a40;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Drive Forker</h1>
+        <p>
+          Professional Google Drive folder management and replication service
+        </p>
+      </div>
+
+      {% if logged_in %}
+      <div class="user-info">
+        <p>
+          Authentication successful. Ready to proceed with folder operations.
+        </p>
+        <a href="/logout" class="logout-link">Sign Out</a>
+      </div>
+
+      <div class="form-section">
+        <h3>Folder Copy Operation</h3>
+        <form action="/copy" method="post">
+          <div class="form-group">
+            <label for="source_id">Source Folder Identifier</label>
+            <input
+              type="text"
+              id="source_id"
+              name="source_id"
+              placeholder="Enter folder ID or complete Google Drive URL"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="dest_id">Destination Folder Identifier</label>
+            <input
+              type="text"
+              id="dest_id"
+              name="dest_id"
+              placeholder="Enter destination folder ID or complete Google Drive URL"
+              required
+            />
+          </div>
+
+          <button type="submit" class="submit-btn">Begin Copy Operation</button>
+        </form>
+
+        <div class="help-text">
+          <strong>Instructions:</strong>
+          Navigate to your Google Drive folder, copy the URL from your browser's
+          address bar, or extract the folder ID from the URL path. Both complete
+          URLs and folder IDs are accepted as valid input.
+        </div>
+      </div>
+      {% else %}
+      <div class="login-section">
+        <p style="margin-bottom: 30px; color: #6c757d; font-size: 16px">
+          Secure authentication with Google Drive is required to access this
+          service.
+        </p>
+        <a href="/login" class="login-btn">Authenticate with Google</a>
+      </div>
+
+      <div class="help-text">
+        <strong>About Drive Forker:</strong>
+        This application provides enterprise-grade folder replication services
+        for Google Drive. It enables complete duplication of folder structures,
+        including all contained files and subdirectories, while maintaining
+        organizational hierarchy and file integrity.
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
